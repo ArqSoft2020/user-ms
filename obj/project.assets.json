@@ -2493,11 +2493,12 @@
       ]
     },
     "System.Collections.Specialized/4.3.0": {
-      "sha512": "NoPBj0ykejqAWW4p4gGtrrL+3c84ZLSvGnHgq422ew1Rj4WKj1FA8/BCybqC111EtgcqUl6ZJNFYYS22HLgbjA==",
+      "sha512": "Epx8PoVZR0iuOnJJDzp7pWvdfMMOAvpUo95pC4ScH2mJuXkKA2Y4aR3cG9qt2klHgSons1WFh4kcGW7cSXvrxg==",
       "type": "package",
       "path": "system.collections.specialized/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -4325,11 +4326,12 @@
       ]
     },
     "System.Runtime.Serialization.Primitives/4.3.0": {
-      "sha512": "2Z5t70a2SwMsfQDp9KOclaZNyQhfIga2gppq9lIUDM1A4ohTshn4JqT7ir8bvIhXgorWKYDAr6rPzEbi/nTGKg==",
+      "sha512": "Wz+0KOukJGAlXjtKr+5Xpuxf8+c8739RI1C+A2BoQZT+wMCCoMDDdO8/4IRHfaVINqL78GO8dW8G2lW/e45Mcw==",
       "type": "package",
       "path": "system.runtime.serialization.primitives/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -5200,21 +5202,17 @@
     ]
   },
   "packageFolders": {
-    "/home/alejandro/.nuget/packages/": {},
-    "/usr/share/dotnet/sdk/NuGetFallbackFolder": {}
+    "/home/alejandro/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/alejandro/Documents/UN/2020-1/arquitectura/proyecto/code/v2/userService/userService.csproj",
+      "projectUniqueName": "/home/alejandro/Documents/UN/2020-1/arquitectura/code/userService/userService/userService.csproj",
       "projectName": "userService",
-      "projectPath": "/home/alejandro/Documents/UN/2020-1/arquitectura/proyecto/code/v2/userService/userService.csproj",
+      "projectPath": "/home/alejandro/Documents/UN/2020-1/arquitectura/code/userService/userService/userService.csproj",
       "packagesPath": "/home/alejandro/.nuget/packages/",
-      "outputPath": "/home/alejandro/Documents/UN/2020-1/arquitectura/proyecto/code/v2/userService/obj/",
+      "outputPath": "/home/alejandro/Documents/UN/2020-1/arquitectura/code/userService/userService/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "/usr/share/dotnet/sdk/NuGetFallbackFolder"
-      ],
       "configFilePaths": [
         "/home/alejandro/.nuget/NuGet/NuGet.Config"
       ],

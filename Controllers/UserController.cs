@@ -73,13 +73,17 @@ namespace userService.Controllers
     {
       try
       {
-        using (var scope = new TransactionScope())
-        {          
-          _userRepository.InsertUser(user);
-          scope.Complete();
-          return CreatedAtAction(nameof(Get), new { id = user.id_user }, user);
+        int count = _userRepository.CountUserByEmail(user.email_user);
+        if (count == 0){  
+          using (var scope = new TransactionScope())
+          {          
+            _userRepository.InsertUser(user);
+            scope.Complete();
+            return CreatedAtAction(nameof(Get), new { id = user.id_user }, user);
+          }
+        }else{
+          return new OkObjectResult("Email already in use!");
         }
-      
       }
       catch(Exception)
       {

@@ -1,21 +1,18 @@
 {
   "format": 1,
   "restore": {
-    "/home/alejandro/Documents/UN/2020-1/arquitectura/proyecto/code/v2/userService/userService.csproj": {}
+    "/home/alejandro/Documents/UN/2020-1/arquitectura/code/userService/userService/userService.csproj": {}
   },
   "projects": {
-    "/home/alejandro/Documents/UN/2020-1/arquitectura/proyecto/code/v2/userService/userService.csproj": {
+    "/home/alejandro/Documents/UN/2020-1/arquitectura/code/userService/userService/userService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/alejandro/Documents/UN/2020-1/arquitectura/proyecto/code/v2/userService/userService.csproj",
+        "projectUniqueName": "/home/alejandro/Documents/UN/2020-1/arquitectura/code/userService/userService/userService.csproj",
         "projectName": "userService",
-        "projectPath": "/home/alejandro/Documents/UN/2020-1/arquitectura/proyecto/code/v2/userService/userService.csproj",
+        "projectPath": "/home/alejandro/Documents/UN/2020-1/arquitectura/code/userService/userService/userService.csproj",
         "packagesPath": "/home/alejandro/.nuget/packages/",
-        "outputPath": "/home/alejandro/Documents/UN/2020-1/arquitectura/proyecto/code/v2/userService/obj/",
+        "outputPath": "/home/alejandro/Documents/UN/2020-1/arquitectura/code/userService/userService/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "/usr/share/dotnet/sdk/NuGetFallbackFolder"
-        ],
         "configFilePaths": [
           "/home/alejandro/.nuget/NuGet/NuGet.Config"
         ],

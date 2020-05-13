@@ -11,6 +11,7 @@ namespace userService.Repository
         void DeleteUser(int userId);
         void UpdateUser(User user, int userId);
         User GetUserByEmail(string email);
+        int CountUserByEmail(string email);
         void Save();
         string CalculateHash(string input);
         byte[] GenerateSalt(int length);

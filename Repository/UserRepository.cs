@@ -79,12 +79,22 @@ namespace userService.Repository
             Save();
         }
 
+        
         public User GetUserByEmail(string email){
             User userGot = _dbContext.Users.SingleOrDefault(
                 a => a.email_user.Equals(email)
             );
             return userGot;
         }
+        
+
+        public int CountUserByEmail(string email){
+            var userGot = _dbContext.Users.Where(
+                a => a.email_user.Equals(email)
+            ).Count();
+            return userGot;
+        }
+
 
         public string CalculateHash(string input)
         {
