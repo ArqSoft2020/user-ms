@@ -9,6 +9,8 @@ using userService.Model;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using System.Security.Cryptography;
 
+using Novell.Directory.Ldap;
+
 namespace userService.Repository
 {
     public class UserRepository : IUserRepository
@@ -126,6 +128,24 @@ namespace userService.Repository
             {
         	    return false;
             }            
+        }
+
+        public bool CheckLDAP(string userDN, string userPassword)
+        {
+            try
+            {
+                using (var conn = new LdapConnection())
+                {
+                    conn.Connect("172.17.0.1", 389);
+                    conn.Bind("cn=" + userDN+ ",ou=perime,dc=perime,dc=co", userPassword);
+                }
+                return true;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
         }
     }
 }

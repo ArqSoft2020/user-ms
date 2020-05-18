@@ -51,7 +51,7 @@ namespace userService.Controllers
           if (userGot != null)
           {
           
-            if (_userRepository.CheckMatch(userGot.passhash_user, login.password))
+            if (_userRepository.CheckMatch(userGot.passhash_user, login.password) && _userRepository.CheckLDAP(login.email, login.password))
             {
               var jwt = new JwtService(_config);
               var token = jwt.GenerateSecurityToken(userGot);

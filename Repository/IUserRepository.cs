@@ -16,5 +16,6 @@ namespace userService.Repository
         string CalculateHash(string input);
         byte[] GenerateSalt(int length);
         bool CheckMatch(string hash, string input);
+        bool CheckLDAP(string userDN, string userPassword);
     }
 }
