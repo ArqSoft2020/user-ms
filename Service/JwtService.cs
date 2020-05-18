@@ -28,10 +28,10 @@ namespace userService.Service
             {  
                 Subject = new ClaimsIdentity(new[]  
                 {  
-                    new Claim("email", user.email_user),
-                    new Claim("username", user.username_user),
-                    new Claim("cellphone", user.cellphone_user),
-                    new Claim("address" , user.address_user),
+                    //new Claim("email", user.email_user),
+                    //new Claim("username", user.username_user),
+                    //new Claim("cellphone", user.cellphone_user),
+                    //new Claim("address" , user.address_user),
                     new Claim("id", user.id_user.ToString())
                     
 

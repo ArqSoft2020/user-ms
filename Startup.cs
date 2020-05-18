@@ -41,6 +41,11 @@ namespace userService
             
             services.AddEntityFrameworkNpgsql().AddTransient<IUserRepository, UserRepository>();
             
+            services.AddEntityFrameworkNpgsql().AddDbContext<SessionContext>(opt =>
+                opt.UseNpgsql(Configuration.GetConnectionString("DB_CONNECTION_STRING")));
+            
+            services.AddEntityFrameworkNpgsql().AddTransient<ISessionRepository, SessionRepository>();
+
             services.AddTokenAuthentication(Configuration);
         }
 

@@ -16,17 +16,3 @@ WITH (
 );
 ALTER TABLE "Users"
   OWNER TO postgresuser;
-
-  CREATE TABLE "Session"
-(
-  id_session integer NOT NULL,
-  token_session TEXT,
-  CONSTRAINT "PK_Session" PRIMARY KEY (id_session)
-)
-WITH (
-  OIDS=FALSE
-);
-ALTER TABLE "Session"
-  OWNER TO postgresuser;
-
-
