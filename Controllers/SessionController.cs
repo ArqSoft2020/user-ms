@@ -68,12 +68,12 @@ namespace userService.Controllers
             }
             else
             {
-              return Content("Invalid Password");
+              return new NotFoundResult();
             }
           }
           else
           {
-            return Content("Email not found!");
+            return new NotFoundResult();
           }   
       }
       catch(Exception)
@@ -88,8 +88,15 @@ namespace userService.Controllers
       try
       {
         var sessionDeleted = _sessionRepository.GetSessionById(id);
-        _sessionRepository.DeleteSession(id);
-        return new OkObjectResult(sessionDeleted);
+        if (sessionDeleted != null)
+        {
+          _sessionRepository.DeleteSession(id);
+          return new OkResult();
+        }
+        else
+        {
+          return new BadRequestResult();
+        }
       }
       catch(Exception)
       {
@@ -99,17 +106,18 @@ namespace userService.Controllers
 
     [Authorize]
     [HttpGet("{id}")]
-    public IActionResult Get(int id)
+    public IActionResult Get([FromHeader (Name="Authorization") ] string token, [FromHeader (Name="Host") ] string host, int id)
     {
       try
       {
+        string checkToken = token.Substring(7);
         var session = _sessionRepository.GetSessionById(id);
-        if (session != null){
+        if (session != null && session.token_session.Equals(checkToken)){
           return new OkResult();
         }
         else
         {
-          return new StatusCodeResult(401);
+          return new BadRequestResult();
         }
       }
       catch(Exception)
