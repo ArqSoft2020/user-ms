@@ -11,15 +11,23 @@ using System.Security.Cryptography;
 
 using Novell.Directory.Ldap;
 
+using Microsoft.Extensions.Configuration;  
+
 namespace userService.Repository
 {
     public class UserRepository : IUserRepository
     {
         private readonly UserContext _dbContext;
+        private readonly string _ip;
+        private readonly string _port;
+        private readonly string _BaseDN;
 
-        public UserRepository(UserContext dbContext)
+        public UserRepository(UserContext dbContext, IConfiguration config)
         {
             _dbContext = dbContext;
+            _ip = config.GetSection("LDAP").GetSection("IP_Address").Value;
+            _port = config.GetSection("LDAP").GetSection("port").Value;
+            _BaseDN = config.GetSection("LDAP").GetSection("BaseDN").Value;
         }
 
         public void DeleteUser(int userId)
@@ -136,8 +144,8 @@ namespace userService.Repository
             {
                 using (var conn = new LdapConnection())
                 {
-                    conn.Connect("172.17.0.1", 389);
-                    conn.Bind("cn=" + userDN+ ",ou=perime,dc=perime,dc=co", userPassword);
+                    conn.Connect(_ip, Int32.Parse(_port));
+                    conn.Bind("cn=" + userDN + _BaseDN, userPassword);
                 }
                 return true;
             }
