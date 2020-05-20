@@ -41,7 +41,7 @@ namespace userService.Controllers
         }
         else
         {
-          return new BadRequestResult();
+          return new UnauthorizedResult();
         }
       }
       catch(Exception)
