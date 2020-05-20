@@ -61,6 +61,11 @@ namespace userService.Controllers
               newSession.token_session = token;
               using (var scope = new TransactionScope())
               {
+                var alreadySession = _sessionRepository.GetSessionById(userGot.id_user);
+                if (alreadySession != null)
+                {
+                  _sessionRepository.DeleteSession(userGot.id_user);
+                }
                 _sessionRepository.InsertSession(newSession);
                 scope.Complete();
               }
