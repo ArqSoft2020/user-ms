@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace userService.Model
 {
-    public class Session
+    public class Sessionw
     {
         [Key]
         public int id_session {get; set;}

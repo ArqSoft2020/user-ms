@@ -1,9 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using userService.Model;
 using userService.Repository;
-using userService.Controllers;
 using System;
-using System.Collections.Generic;
 using System.Transactions;
 
 using Microsoft.Extensions.Configuration;
@@ -14,16 +12,16 @@ namespace userService.Controllers
 {
   [Route("perime-user-ms/[controller]")]
   [ApiController]
-  public class SessionController : ControllerBase
+  public class SessionmController : ControllerBase
   {
 
     private readonly IUserRepository _userRepository;
-    private readonly ISessionRepository _sessionRepository;
+    private readonly ISessionmRepository _sessionRepository;
     private IConfiguration _config;
-    public SessionController (IUserRepository userRepository, ISessionRepository sessionRepository, IConfiguration config)
+    public SessionmController (IUserRepository userRepository, ISessionmRepository sessionmRepository, IConfiguration config)
     {
       _userRepository = userRepository;
-      _sessionRepository = sessionRepository;
+      _sessionRepository = sessionmRepository;
       _config = config;
     }
 
@@ -56,7 +54,7 @@ namespace userService.Controllers
               var jwt = new JwtService(_config);
               var token = jwt.GenerateSecurityToken(userGot);
 
-              Session newSession = new Session();
+              Sessionm newSession = new Sessionm();
               newSession.id_session = userGot.id_user;
               newSession.token_session = token;
               using (var scope = new TransactionScope())
@@ -111,7 +109,7 @@ namespace userService.Controllers
 
     [Authorize]
     [HttpGet("{id}")]
-    public IActionResult Get([FromHeader (Name="Authorization") ] string token, [FromHeader (Name="Host") ] string host, int id)
+    public IActionResult Get([FromHeader (Name="Authorization") ] string token, int id)
     {
       try
       {

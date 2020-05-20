@@ -17,16 +17,28 @@ WITH (
 ALTER TABLE "Users"
   OWNER TO postgresuser;
 
-  CREATE TABLE "Session"
+  CREATE TABLE "Sessionm"
 (
   id_session integer NOT NULL,
   token_session TEXT,
-  CONSTRAINT "PK_Session" PRIMARY KEY (id_session)
+  CONSTRAINT "PK_Sessionm" PRIMARY KEY (id_session)
 )
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE "Session"
+ALTER TABLE "Sessionm"
   OWNER TO postgresuser;
 
+
+  CREATE TABLE "Sessionw"
+(
+  id_session integer NOT NULL,
+  token_session TEXT,
+  CONSTRAINT "PK_Sessionw" PRIMARY KEY (id_session)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE "Sessionw"
+  OWNER TO postgresuser;
 

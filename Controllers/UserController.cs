@@ -2,9 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using userService.Model;
 using userService.Repository;
 using System;
-using System.Collections.Generic;
 using System.Transactions;
-using Microsoft.AspNetCore.Authorization;
 
 namespace userService.Controllers
 {
@@ -35,7 +33,7 @@ namespace userService.Controllers
       }
     }
 
-/*
+
     [HttpGet("{id}", Name = "Get")]
     public IActionResult Get(int id)
     {
@@ -50,7 +48,8 @@ namespace userService.Controllers
       }
       
     }
-*/
+
+/*
     //[Authorize]
     [HttpGet("{email}", Name = "Get")]
     public IActionResult Get(string email)
@@ -63,10 +62,9 @@ namespace userService.Controllers
       catch(Exception)
       {
         return new StatusCodeResult(500);
-      }
-      
+      }      
     }
-
+*/
 
     [HttpPost]
     public IActionResult Post([FromBody] User user)
