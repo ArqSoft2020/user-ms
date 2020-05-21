@@ -18,14 +18,14 @@ namespace userService.Controllers
       _userRepository = userRepository;
     }
 
-    //[Authorize]
+
     [HttpGet]
     public IActionResult Get()
     {
       try
       {
-      var users = _userRepository.GetUsers();
-      return new OkObjectResult(users);
+        var users = _userRepository.GetUsers();
+        return new OkObjectResult(users);
       }
       catch(Exception)
       {
@@ -49,22 +49,6 @@ namespace userService.Controllers
       
     }
 
-/*
-    //[Authorize]
-    [HttpGet("{email}", Name = "Get")]
-    public IActionResult Get(string email)
-    {
-      try
-      {
-        var user = _userRepository.GetUserByEmail(email);
-        return new OkObjectResult(user);
-      }
-      catch(Exception)
-      {
-        return new StatusCodeResult(500);
-      }      
-    }
-*/
 
     [HttpPost]
     public IActionResult Post([FromBody] User user)
@@ -90,7 +74,7 @@ namespace userService.Controllers
       
     }
 
-    //[Authorize]
+
     [HttpPut("{id}", Name = "Put")]
     public IActionResult Put(int id, [FromBody] User user)
     {
@@ -115,7 +99,7 @@ namespace userService.Controllers
       
     }
 
-    //[Authorize]
+
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
     {

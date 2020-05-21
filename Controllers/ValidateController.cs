@@ -1,11 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using userService.Model;
 using userService.Repository;
 using System;
-using System.Transactions;
 
 using Microsoft.Extensions.Configuration;
-using userService.Service;
 using Microsoft.AspNetCore.Authorization;
 
 namespace userService.Controllers
@@ -49,7 +46,6 @@ namespace userService.Controllers
         return new StatusCodeResult(500);
       }
     }
-
 
   }
 }

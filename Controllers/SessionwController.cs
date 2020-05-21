@@ -6,7 +6,6 @@ using System.Transactions;
 
 using Microsoft.Extensions.Configuration;
 using userService.Service;
-using Microsoft.AspNetCore.Authorization;
 
 namespace userService.Controllers
 {
@@ -25,13 +24,14 @@ namespace userService.Controllers
       _config = config;
     }
 
+
     [HttpGet]
     public IActionResult Get()
     {
       try
       {
-      var sessions = _sessionRepository.GetSessions();
-      return new OkObjectResult(sessions);
+        var sessions = _sessionRepository.GetSessions();
+        return new OkObjectResult(sessions);
       }
       catch(Exception)
       {
@@ -45,45 +45,45 @@ namespace userService.Controllers
     {
       try
       {
-          var userGot =_userRepository.GetUserByEmail(login.email);
-          if (userGot != null)
+        var userGot =_userRepository.GetUserByEmail(login.email);
+        if (userGot != null)
+        {        
+          if (_userRepository.CheckMatch(userGot.passhash_user, login.password) && _userRepository.CheckLDAP(login.email, login.password))
           {
-          
-            if (_userRepository.CheckMatch(userGot.passhash_user, login.password) && _userRepository.CheckLDAP(login.email, login.password))
+            var jwt = new JwtService(_config);
+            var token = jwt.GenerateSecurityToken(userGot);
+            
+            Sessionw newSession = new Sessionw();
+            newSession.id_session = userGot.id_user;
+            newSession.token_session = token;
+            using (var scope = new TransactionScope())
             {
-              var jwt = new JwtService(_config);
-              var token = jwt.GenerateSecurityToken(userGot);
-
-              Sessionw newSession = new Sessionw();
-              newSession.id_session = userGot.id_user;
-              newSession.token_session = token;
-              using (var scope = new TransactionScope())
+              var alreadySession = _sessionRepository.GetSessionById(userGot.id_user);
+              if (alreadySession != null)
               {
-                var alreadySession = _sessionRepository.GetSessionById(userGot.id_user);
-                if (alreadySession != null)
-                {
-                  _sessionRepository.DeleteSession(userGot.id_user);
-                }
-                _sessionRepository.InsertSession(newSession);
-                scope.Complete();
+                _sessionRepository.DeleteSession(userGot.id_user);
               }
-              return new OkObjectResult(newSession);
+              _sessionRepository.InsertSession(newSession);
+              scope.Complete();
             }
-            else
-            {
-              return new NotFoundResult();
-            }
+            return new OkObjectResult(newSession);
           }
           else
           {
             return new NotFoundResult();
-          }   
+          }
+        }
+        else
+        {
+          return new NotFoundResult();
+        }   
       }
       catch(Exception)
       {
           return new StatusCodeResult(500);
       } 
     }
+
 
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
@@ -94,7 +94,7 @@ namespace userService.Controllers
         if (sessionDeleted != null)
         {
           _sessionRepository.DeleteSession(id);
-          return new OkResult();
+          return new OkObjectResult(sessionDeleted);
         }
         else
         {
@@ -106,29 +106,6 @@ namespace userService.Controllers
         return new StatusCodeResult(500);
       }
     }
-
-    [Authorize]
-    [HttpGet("{id}")]
-    public IActionResult Get([FromHeader (Name="Authorization") ] string token, int id)
-    {
-      try
-      {
-        string checkToken = token.Substring(7);
-        var session = _sessionRepository.GetSessionById(id);
-        if (session != null && session.token_session.Equals(checkToken)){
-          return new OkResult();
-        }
-        else
-        {
-          return new BadRequestResult();
-        }
-      }
-      catch(Exception)
-      {
-        return new StatusCodeResult(500);
-      }
-    }
-
 
   }
 }
