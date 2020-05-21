@@ -146,6 +146,7 @@ namespace userService.Repository
                 {
                     conn.Connect(_ip, Int32.Parse(_port));
                     conn.Bind("cn=" + userDN + _BaseDN, userPassword);
+                    conn.Disconnect();
                 }
                 return true;
             }
